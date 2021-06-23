@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <div id="app">
+        <!-- 复选框单选的情况 -->
+        <label for="AGREEMENT">
+            <input type="checkbox" id="AGREEMENT" v-model="isAGREEMENT"> 请勾选用户协议
+            <button :disabled="!isAGREEMENT" @click="nextstep = true">下一步</button>
+        </label>
+        <!-- 复选框多选的情况 -->
+        <label for="" v-if="nextstep && isAGREEMENT">
+            <input type="checkbox" id="hobby" value="吃" v-model="hobbys">吃
+            <input type="checkbox" id="hobby" value="喝" v-model="hobbys">喝
+            <input type="checkbox" id="hobby" value="玩" v-model="hobbys">玩
+            <input type="checkbox" id="hobby" value="乐" v-model="hobbys">乐
+            <h2>他们的爱好是{{hobbys}}</h2>
+        </label>
+    </div>
+    <script src="./js/Vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                init: "hello word",
+                isAGREEMENT: false,
+                nextstep: false,
+                hobbys: []
+            },
+            methods: {},
+            computed: {},
+        })
+    </script>
+</body>
+
+</html>

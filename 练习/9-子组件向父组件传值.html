@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <!-- :myPhone="myPhone"  这样写获取不到数据的-->
+        <cnp :userinfo="userInfo" :hobby="hobby" :my-phone="myPhone"></cnp>
+    </div>
+    <template id="cnp1">
+        <div>
+            <div>大家好,我是{{userinfo.name}}</div>
+            <div>我是{{userinfo.birthDay}}年的,我今年{{userinfo.age}}岁了</div>
+            <div>我的手机号是: {{myPhone}}</div>
+            <div>
+                <h4>我的爱好是</h4>
+                <ul v-for="(item,index) in hobby">
+                    <li>{{item}}</li>
+                </ul>
+            </div>
+        </div>
+    </template>
+    <script src="./js/Vue.js"></script>
+    <script>
+        const cnp = {
+            template: `#cnp1`,
+            props: {
+                userinfo: { //在 props 里面命名需要注意大小写,(由于HTML不支持大写,所以会报错,需要改格式 例如 : ("myLike" = "my-like"))
+                    type: Object, // 这个是类型(要求父组件以什么类型传递)
+                    default() {   // 这个是默认值(如果父组件没有传值的话默认显示的数据)
+                        return {
+                            name: "mmdy",
+                            age: 18,
+                            birthDay: "2004 - 11 - 21"
+                        }
+                    }
+                },
+                hobby: Array,
+                myPhone: Number
+            }
+        }
+        const app = new Vue({
+            el: '#app',
+            data: {
+                init: "hello word",
+                userInfo: {
+                    name: "xxzy",
+                    age: 20,
+                    birthDay: "2000 - 04 - 1"
+                },
+                myPhone: 13068001758,
+                hobby: ['吃', '喝', '玩', '乐']
+            },
+            methods: {},
+            computed: {},
+            components: {
+                cnp
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"></input>
+    <script>
+        var ipt = document.querySelector('input')
+
+        var obj = {
+            text:'abc'
+        }
+        //  视图影响数据
+        ipt.addEventListener('keyup',function (e) {
+            // console.log(e.target.value);
+            obj.text = e.target.value
+        })
+        var temp
+        //   数据影响视图
+        Object.defineProperty(obj,'text',{
+            set:function (newv) {
+              ipt.value = newv
+              temp = newv
+            },
+            get:function (newv) {
+            //   console.log('get被触发了');
+             
+             return temp
+            }
+        })
+
+        // 给input绑定键盘弹起事件,通过 e.target.value 就可以获取输入的值,把输入的值重新传给input
+        // 通过 set 
+    </script>
+</body>
+</html>

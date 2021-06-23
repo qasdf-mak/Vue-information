@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .text_color {
+        color: red;
+    }
+</style>
+
+<body>
+    <!-- 第一种实现方式(三元表达式) -->
+    <div id="app">
+        <!-- <ul>
+            <li :class="initIndex === index ? 'text-color' : ''" v-for="(item,index) in list" :key="index"
+                @click="changeIndex(index)">{{item}}</li>
+        </ul> -->
+        <!-- 第二种实现方式 (对象判断)-->
+        <ul>
+            <li v-for="(item,index) in list" :class={text_color:initIndex===index} :key="item"
+                @click="initIndex = index">{{item}}</li>
+        </ul>
+    </div>
+
+    <script src="./js/Vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                list: ['苹果', '香蕉', '梨', '荔枝', '杨梅'],
+                userName: '薛泽阳',
+                initIndex: 0,
+            },
+            methods: {
+                changeIndex(index) {
+                    console.log(index)
+                    this.initIndex = index
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+</style>
+
+<body>
+    <!-- 在vue中,有緩存的機制,例如我在用戶賬號輸入框輸入了,點擊切換,在郵箱登錄的輸入框也可以看到,解決方法:'加上key'key是唯一標識符 -->
+    <div id="app">
+        <div v-if="isShow">
+            <label for="username">用户账号</label>
+            <input type="text" key="userlogin" placeholder="请输入账号">
+        </div>
+        <div v-else>
+            <label for="emily">郵箱账号</label>
+            <input type="text" key="emilylogin" placeholder="请输入账号">
+        </div>
+        <button @click="isShow = !isShow">切換郵箱登錄</button>
+    </div>
+    <script src="./js/Vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                init: "hello word",
+                isShow: true
+            },
+            methods: {},
+            computed: {},
+        })
+    </script>
+</body>
+
+</html>

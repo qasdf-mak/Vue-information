@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <h1>父组件:{{number1}}</h1>
+        <h1>父组件:{{number2}}</h1>
+        <cpn :num1="number1" :num2="number2" @changenumber1="changenumber1" @changenumber2="changenumber2"></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h1 style="color:#ff8090;">子组件 props: {{num1}}</h1>
+            <div>data:{{numone}}</div>
+            <input type="text" :value="numone" @input="changenumone">
+            <h1 style="color:#ff8090;">子组件 props: {{num2}}</h1>
+            <div>data:{{numtwo}}</div>
+            <input type="text" :value="numtwo" @input="changenumtwo">
+        </div>
+    </template>
+    <script src="./js/Vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                init: "hello word",
+                number1: 1,
+                number2: 0
+            },
+            methods: {
+                changenumber1(num) {
+                    console.log(num)
+                    this.number2 = num * 100
+                    this.number1 = parseInt(num)
+                },
+                changenumber2(num) {
+                    this.number2 = num
+                }
+            },
+            computed: {},
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+                            numone: 1,
+                            numtwo: 0,
+                        }
+                    },
+                    props: {
+                        num1: Number,
+                        num2: Number
+                    },
+                    methods: {
+                        changenumtwo(event) {
+                            this.numtwo = event.target.value
+                            this.$emit("changenumber2", this.numtwo)
+                        },
+                        changenumone(event) {
+                            this.numone = event.target.value
+                            this.numtwo = this.numone * 100
+                            this.$emit("changenumber1", this.numone)
+                        }
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

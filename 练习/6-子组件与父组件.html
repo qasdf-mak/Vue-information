@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <my-test></my-test>
+    </div>
+    <script src="./js/Vue.js"></script>
+    <script>
+        // 这里是子组件
+        const myText = Vue.extend({
+            template: `
+            <div>这里的水太深</div>
+            `
+        })
+        // 这里是父组件
+        const myTest = Vue.extend({
+            // 在这里必须要把组件写到 div 里面 , 不然会报错
+            template: ` 
+            <div>
+                <div>你把握不住</div>
+                <my-text></my-text>                
+            </div>
+            `,
+            // 这是组件内部的 components ,在组件中也可以调组件
+            components: {
+                'my-text': myText
+            }
+        })
+        // 也可以在全局注册
+        Vue.component('my-test', myTest)
+        const app = new Vue({
+            el: '#app',
+            data: { init: "hello word" },
+            methods: {},
+            computed: {},
+            // 在 Vue 实例中注册组件
+            // components: {
+            //     'my-test': myTest
+            // }
+        })
+    </script>
+</body>
+
+</html>

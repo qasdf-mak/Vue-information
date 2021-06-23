@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <!-- 3. (第三步:使用组件) -->
+        <!-- <cmp></cmp> -->
+        <!-- <mytext></mytext> -->
+        <mytest></mytest>
+    </div>
+    <!-- 1. 组件的模板分离(1) -->
+    <!-- <script type="text/x-template" id="pgzj">
+     <div>
+         <h1>嘎子的酒好</h1>
+         <h2>还是潘子的酒好呢</h2>
+     </div>
+    </script> -->
+    <!-- 2. 组件的模板分离(2) -->
+    <template id="pgzhij">
+        <div>
+            <h1>嘎的酒好</h1>
+            <h2>还是潘的酒好呢</h2>
+        </div>
+    </template>
+    <script src="./js/Vue.js"></script>
+    <script>
+        // 1. 原始注册组件的方法(第一步:创建组件构造器)
+        // const cmp = Vue.extend({
+        //     template: `
+        //     <div>
+        //         <h2>他太会卖了 ?  潘子</h2>    
+        //     </div>
+        //     `
+        // })
+        //  2 . (第二步: 注册组件[全局注册]) 
+        // Vue.component('cmp', cmp)
+
+        // Vue 组件的语法糖
+        // Vue.component('mytext', {
+        //     template: `
+        //     <div>
+        //         <h2>他太会卖了 ?  潘</h2>    
+        //     </div>
+        //     `
+        // })
+        // 组件如何将模板分离
+        Vue.component('mytest', {
+            template: '#pgzhij'
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data: { init: "hello word" },
+            methods: {},
+            computed: {},
+        })
+    </script>
+</body>
+
+</html>

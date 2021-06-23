@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="./购物车案例/css/style.css">
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <calculate></calculate>
+        <calculate></calculate>
+        <calculate></calculate>
+
+    </div>
+    <script type="text/x-template" id="iscalculate">
+        <div>
+            <h2>当前的数字为 : {{num}}</h2>
+        <button @click="add">+</button>
+        <button class="ml30" @click="Reduction">-</button>
+        </div>
+    </script>
+    <script src="./js/Vue.js"></script>
+    <script>
+        Vue.component('calculate', {
+            template: "#iscalculate",
+            data() {
+                return { num: 0 }
+            },
+            methods: {
+                add() {
+                    this.num++
+                },
+                Reduction() {
+                    this.num--
+                }
+            }
+        })
+        const app = new Vue({
+            el: '#app',
+            data: { init: "hello word" },
+            methods: {},
+            computed: {},
+        })
+        const obj = { name: 'xzy' }
+        function abc() {
+            // return obj //每次调用 abc() 的时候 返回的都是 obj 这个对象 (返回的内存地址都是一样的) ,所以他们都是一个对象,会同步发生变化
+            return { name: 'xzy' }   // 每次调用 abc() 的时候,都换创建一个新的内存地址 , 所以 obj1 obj2 obj3 不会同步变化
+        }
+
+        let obj1 = abc()
+        let obj2 = abc()
+        let obj3 = abc()
+        obj1.name = "mdy"
+        console.log(obj1) //mdy
+        console.log(obj2) //xzy
+        console.log(obj3) //xzy
+
+    </script>
+</body>
+
+</html>
